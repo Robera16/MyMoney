@@ -1,5 +1,5 @@
 import { useState } from "react"
-import { projectAuth } from "../firebase/Config"
+import { projectAuth } from "../firebase/config"
 
 export const useSignup = () => {
     const[error, setError] = useState(null)
@@ -15,7 +15,7 @@ export const useSignup = () => {
             const res = await projectAuth.createUserWithEmailAndPassword(email, password)
             console.log(res.user)
 
-            if(!res){
+            if(!res){ // bad connection
                 throw new Error('Could not complete signup')
             }
 
@@ -25,7 +25,7 @@ export const useSignup = () => {
             setIsPending(false)
             setError(null)
 
-        }catch(err){
+        }catch(err){ // email is already taken, password is too short
             console.log(err.message)
             setError(err.message)
             setIsPending(false)
