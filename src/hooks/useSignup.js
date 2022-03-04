@@ -7,6 +7,10 @@ export const useSignup = () => {
     const[isPending, setIsPending] = useState(false)
     const { dispatch } = useAuthContext()
 
+    /* 
+    signup function is created to avoid automatic signup
+    when useSignup hook is included in the component
+    */
     const signup = async (email, password, displayName) => {
         // reset the error every time we try to signup
         setError(null)
